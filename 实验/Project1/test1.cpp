@@ -9,7 +9,7 @@ int syn;	//单词种别码
 int sum;	//整型常数 
 int p;	//prog指针
 int m;	//token指针
-int n;
+int n;  //循环变量
 //关键字 
 const char* rwtab[6] = { "begin", "if", "then", "while", "do", "end" };
 
@@ -41,9 +41,9 @@ void scanner() {
 	for (n = 0; n < 8; n++) {
 		token[n] = NULL;
 	}
-	m = 0;
+	m = 0;//token指针置为0
 
-	//获取下一个有效字符 
+	//获取下一个有效字符（即略过空格）并存入 
 	ch = prog[p];
 	while (ch == ' ') {
 		p++;
@@ -214,16 +214,16 @@ int main(int argc, char** argv) {
 		str = getchar();
 		prog[p] = str;
 		p++;
-	} while (str != '#');//
+	} while (str != '#');//读到#结束读取
 
-	p = 0;
+	p = 0;//重置prog指针，从头开始分析
 	ch = prog[p];
 
 	//开始分析 
 	do {
 		scanner();
 		switch (syn) {
-		case 11:
+		case 11://数字串
 			cout << "(" << syn << "," << sum << ")" << endl;
 			break;
 		case -1:
