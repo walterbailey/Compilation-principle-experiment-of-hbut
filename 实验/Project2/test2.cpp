@@ -10,7 +10,7 @@ int syn;	//单词种别码
 int sum;	//整型常数 
 int p;	//prog指针
 int m;	//token指针
-int n;  //循环变量
+int n;  //
 int kk;	//错误标记 
 //关键字 
 const char* rwtab[6] = { "begin", "if", "then", "while", "do", "end" };
